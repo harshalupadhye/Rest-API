@@ -14,6 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'template')
 
 
 # Quick-start development settings - unsuitable for production
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'newapp',
     'rest_framework',
+    'display',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +58,7 @@ ROOT_URLCONF = 'newproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATE_DIR,],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,6 +72,14 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'newproject.wsgi.application'
+
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'paupadhye64@gmail.com'
+DEFAULT_FROM_EMAIL = 'paupadhye64@gmail.com'
+EMAIL_HOST_PASSWORD = 'Prashant@1964'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 
 # Database
@@ -120,3 +130,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS=(
+    os.path.join(BASE_DIR,'static'),
+)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_ROOT = os.path.join(BASE_DIR,'uploaded_pics')
+
+AWS_ACCESS_KEY_ID='AKIA2H5HJVQTHICEWDR4'
+AWS_SECRET_ACCESS_KEY='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'
+DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
+AWS_STORAGE_BUCKET_NAME = 'harshal--django-upload'
+AWS_S3_REGION_NAME='us-east-1'
